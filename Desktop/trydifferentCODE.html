@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+
+		let Student = function(first,last,bdyear) {
+
+			this.firstname = first;//agrument
+			this.lastname = last;
+			this.bdyear = bdyear;
+
+			//this.allMARKS = 0;
+
+			this.marks = new Array(30).fill(undefined);
+			//console.log(this.marks);
+			this.attendance = new Array(30).fill(undefined);
+			//console.log(this.attendance);
+				
+
+			this.fullName = function(){
+
+				return this.firstname + '  ' + this.lastname;
+
+			};
+
+			this.getAge = function(){
+
+				const currentdate = new Date().getFullYear();
+				//console.log(currentdate);
+				return	(currentdate - this.bdyear) ;
+
+			};
+			// Посещаемость 
+			this.present = function(){
+
+				 return this.attendance[this.attendance.indexOf(undefined)] = 'true';
+
+			};
+			//Отсутствие
+			this.absent = function(){
+
+				return this.attendance[this.attendance.indexOf(undefined)] = 'false';
+				
+			};
+			// Выставление Оценок ПРОБЛЕМА С ЗАЩАИТОЙ ОТ 0 до 10!???
+			this.grade_mark = function(arg){
+
+				if(0 < arg <= 10){ 
+
+					return this.marks[this.marks.indexOf(undefined)] = arg;
+					
+				} else {
+
+					return	console.log("Балл от 0 до 10!!")
+				}
+			}; 
+			// Средняя оценка ????????????????????????/
+			this.middle_mark = function() {
+             	
+             // this.middle_marks.reduce(function(r, m){
+             //  r + m / this.marks.length;})
+
+				return this.marks.reduce(function(item,i){
+
+						return item + i /this.marks.length; 
+
+				},0);
+
+
+			};
+			//Средняя посещаемость
+			this.middle_attendance = function(){
+
+
+			};
+
+			this.summery = function() {
+
+			};
+		}
+		
+		let kristina = new Student('Кристина','Тарасова','1988');
+
+		let vasya = new Student('Вася','Петров','1991');
+
+		// console.log(vasya);
+		// console.log(vasya.getAge());
+		 
+		 
+		 // Студент 1 Вася 
+		 console.log('Полное имя '+ vasya.fullName()); 
+		 console.log('Васе ' +  vasya.getAge() + ' лет'); 
+
+		 // По прошествию  5-ти занятий 
+
+
+		//Посещение занятий ВАСЕЙ
+		 vasya.present();
+		 vasya.present();
+		 vasya.present();
+		 vasya.present();
+		 vasya.absent();
+
+		 console.log('Посещенные занятия ВАСИ ' + vasya.attendance)
+		 // Оценки ВАСИ
+		 vasya.grade_mark(8);
+		 vasya.grade_mark(5);
+		 vasya.grade_mark(7);
+		 vasya.grade_mark(9);
+		 vasya.grade_mark(0);
+
+		 console.log('Оценки ВАСИ ' + vasya.marks);
+
+		 console.log('________________________')
+
+		 //Студент 2
+		 console.log('Полное имя '+ kristina.fullName()); 
+         console.log('Кристине ' + kristina.getAge() + ' года');
+		 
+
+		 //Посещение Кристины
+		 kristina.present();
+		 kristina.present();
+		 kristina.present();
+		 kristina.present();
+		 kristina.present();
+
+		 console.log('Посещенные занятия Кристины ' +  kristina.attendance)
+
+		 //Оценки Кристины 
+		 kristina.grade_mark(1);
+		 kristina.grade_mark(10);
+		 kristina.grade_mark(9);
+		 kristina.grade_mark(10);
+		 kristina.grade_mark(10);
+
+		 console.log('Оценки Кристины ' + kristina.marks);
+
+		 console.log(kristina.middle_mark());
+
+ 
+
+		
+
+
+
+	
+	</script>
+	
+</body>
+</html>
